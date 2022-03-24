@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import ru.netology.domain.TicketByTimeAscComparator;
 import ru.netology.repository.TicketRepository;
 import ru.netology.domain.Ticket;
+
+import java.util.Comparator;
 
 class TicketManagerTest {
     private TicketManager manager;
@@ -30,14 +33,15 @@ class TicketManagerTest {
     }
 
     @Test
-    void shouShowOffers() {
-        Ticket[] expected = new Ticket[]{first, five, second, seven, third, ten};
-        assertArrayEquals(expected, manager.showOffers());
-    }
-
-    @Test
     void shouldFindAll() {
         Ticket[] expected = new Ticket[]{first, seven, third};
         assertArrayEquals(expected, manager.findAll("AAA", "AAB"));
+    }
+
+    @Test
+    void shouldFindAllMinByTimeFlight() {
+        Comparator<Ticket> comparator = new TicketByTimeAscComparator();
+        Ticket[] expected = new Ticket[]{first, third, seven};
+        assertArrayEquals(expected, manager.findAllByTime("AAA", "AAB", comparator));
     }
 }
