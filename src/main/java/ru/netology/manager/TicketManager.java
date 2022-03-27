@@ -60,6 +60,5 @@ public class TicketManager {
         Arrays.sort(result, comparator); // сортируем по результату, после чего выводим
         return result;
 
-
     }
 }
