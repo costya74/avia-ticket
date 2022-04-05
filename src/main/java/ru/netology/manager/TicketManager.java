@@ -41,7 +41,7 @@ public class TicketManager {
     }
 
     //создаем метод поиска по времени перелета
-    public Ticket[] findAllByTime(String from, String to, Comparator<Ticket> comparator) {
+    public Ticket[] findAllOnRequest(String from, String to, Comparator<Ticket> comparator) {
         // создаем новый массив с нуля
         Ticket[] result = new Ticket[0];
         // перебираем все билеты в репозитории

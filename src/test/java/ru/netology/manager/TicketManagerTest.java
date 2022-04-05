@@ -53,12 +53,12 @@ class TicketManagerTest {
     void shouldFindAllMinByTimeFlight() {
         Comparator<Ticket> comparator = new TicketByTimeAscComparator();
         Ticket[] expected = new Ticket[]{first, third, seven};
-        assertArrayEquals(expected, manager.findAllByTime("AAA", "AAB", comparator));
+        assertArrayEquals(expected, manager.findAllOnRequest("AAA", "AAB", comparator));
     }
     @Test
     void shouldNoExistFlightAcrossComparator() {
         Comparator<Ticket> comparator = new TicketByTimeAscComparator();
         Ticket[] expected = new Ticket[0];
-        assertArrayEquals(expected, manager.findAllByTime("AAA", "AGA", comparator));
+        assertArrayEquals(expected, manager.findAllOnRequest("AAA", "AGA", comparator));
     }
 }
