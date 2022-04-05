@@ -33,11 +33,42 @@ class TicketRepositoryTest {
     }
 
     @Test
+    void shouldGetAllMax() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        repository.save(five);
+        repository.save(ten);
+        repository.save(seven);
+
+        Ticket[] expected = {first, second, third, five, ten, seven};
+        Ticket[] actual = repository.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void shouldFindById() {
         repository.save(first);
         Ticket[] expected = new Ticket[]{first};
         Ticket[] actual = repository.getAll();
         assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldFindByIdNull() {
+        Ticket[] expected = new Ticket[]{};
+        Ticket[] actual = repository.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldFindByIdNumber() {
+        repository.save(first);
+        repository.save(second);
+        repository.save(third);
+        int expected = 3;
+        Ticket actual = repository.findById(3);
+        assertEquals(expected, actual.getId());
     }
 
     @Test
@@ -47,8 +78,8 @@ class TicketRepositoryTest {
         repository.save(third);
 
         repository.removeById(2);
-        Ticket[] actual = new Ticket[]{first,third};
-        Ticket[] expected = new Ticket[]{first,third};
+        Ticket[] actual = new Ticket[]{first, third};
+        Ticket[] expected = new Ticket[]{first, third};
         assertArrayEquals(expected, actual);
     }
 
@@ -61,4 +92,4 @@ class TicketRepositoryTest {
             repository.removeById(-1);
         });
     }
-    }
+}
