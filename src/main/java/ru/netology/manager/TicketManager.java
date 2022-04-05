@@ -7,7 +7,6 @@ import ru.netology.domain.Ticket;
 import ru.netology.repository.TicketRepository;
 
 import java.util.Arrays;
-import java.lang.reflect.Array;
 import java.util.Comparator;
 
 @AllArgsConstructor
@@ -59,6 +58,12 @@ public class TicketManager {
         }
         Arrays.sort(result, comparator); // сортируем по результату, после чего выводим
         return result;
+    }
 
+    // Найти все предложения
+    public Ticket[] findOffers() {
+        Ticket[] result = repository.getAll();
+        Arrays.sort(result); // сортируем по возрастанию
+        return result;
     }
 }

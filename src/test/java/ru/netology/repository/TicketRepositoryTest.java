@@ -55,6 +55,13 @@ class TicketRepositoryTest {
     }
 
     @Test
+    void shouldFindByIdNull() {
+        Ticket[] expected = new Ticket[]{};
+        Ticket[] actual = repository.getAll();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void shouldFindByIdNumber() {
         repository.save(first);
         repository.save(second);
